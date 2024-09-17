@@ -1,0 +1,18 @@
+.loadMoreBtn{
+    display: block;
+        margin: auto;
+        background-color:#023020;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        margin-bottom: 24px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 250ms linear;
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:active,
+.loadMoreBtn:focus-visible {
+    background-color: #2C5F34
+}

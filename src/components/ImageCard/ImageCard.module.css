@@ -1,0 +1,16 @@
+.container {
+    display: block;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+}
+
+.imageCard {
+width: 300px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.descriptionContainer {
+    padding: 16px;
+}

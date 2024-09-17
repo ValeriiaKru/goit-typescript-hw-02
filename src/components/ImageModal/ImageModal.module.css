@@ -1,0 +1,12 @@
+.photoModal {
+    display: block;
+        max-width: 800px;
+        margin: auto;
+        margin-bottom: 16px;
+
+}
+
+.description {
+    text-align:center;
+        font-size: 18px;
+}
