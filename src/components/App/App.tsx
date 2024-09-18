@@ -1,41 +1,45 @@
 import { useState, useEffect } from 'react';
 
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
-import ImageGallery from './components/ImageGallery/ImageGallery';
-import ImageModal from './components/ImageModal/ImageModal';
-import Loader from './components/Loader/Loader';
-import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
-import SearchBar from './components/SearchBar/SearchBar';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ImageGallery from '../ImageGallery/ImageGallery';
+import ImageModal from '../ImageModal/ImageModal';
+import Loader from '../Loader/Loader';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import SearchBar from '../SearchBar/SearchBar';
 
-import fetchPhotos from './fetchAPI';
-import toast, { Toaster } from 'react-hot-toast';
+import fetchPhotos from '../../fetchAPI';
+import toast from 'react-hot-toast';
+import { Image } from './App.types';
 
 const App = () => {
-  const [images, setImages] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [searchingValue, setSearchingValue] = useState('');
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [currentImage, setCurrentImage] = useState({
+  const [images, setImages] = useState<Image[]|null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [searchingValue, setSearchingValue] = useState<string>('');
+  const [isOpen, setIsOpen] = useState<boolean>(false); 
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentImage, setCurrentImage] = useState<{
+    url: string,
+    alt: string,
+  }>({
     url: '',
     alt: '',
   });
 
-  function openModal() {
-    setIsOpen(true);
-  }
+const openModal = (): void => {
+  setIsOpen(true);
+};
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+const closeModal = (): void => {
+  setIsOpen(false);
+};
 
 
 
   useEffect(() => {
     if (searchingValue.trim() === '') return;
-    const getPhotos = async (value) => {
+    const getPhotos = async (value:string) => {
       setError(false);
       setIsLoading(true);
     
@@ -65,7 +69,7 @@ const App = () => {
   getPhotos(searchingValue);
   }, [searchingValue, pageNumber]);
   
-  const handleSubmit = (userValue) => {
+  const handleSubmit = (userValue:string):void => {
     setImages(null);
     setPageNumber(1);
     setSearchingValue(userValue);
@@ -83,7 +87,7 @@ const App = () => {
         />
       )}
       <ImageModal
-        modalIsOpen={modalIsOpen}
+        modalIsOpen={isOpen}
         closeModal={closeModal}
         currentImage={currentImage}
       />

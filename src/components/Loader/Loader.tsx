@@ -1,9 +1,9 @@
-import css from './Loader.module.css';
+
 import { Watch } from 'react-loader-spinner';
 
-const Loader = () => {
+const Loader: React.FC = () => {
     return (
-        <div className={css.containerLoader}>
+        <div>
             <Watch
             visible={true}
             height="50"
